@@ -1,0 +1,7 @@
+___pycache___/
+*.pyc
+__pycache__/
+*.pyc
+.env
+venv/
+node_module/
