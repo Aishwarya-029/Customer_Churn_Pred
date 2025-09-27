@@ -3,9 +3,7 @@ import joblib
 import pandas as pd
 import numpy as np
 
-# -----------------------------
 # Load model and encoders
-# -----------------------------
 loaded_model = joblib.load("model.pkl")
 
 # Extract model if stored inside a dictionary
@@ -21,9 +19,9 @@ except Exception:
     encoders = None
     st.info("No encoders.pkl found — categorical encoding will use fallback mapping.")
 
-# -----------------------------
+
 # Feature setup
-# -----------------------------
+
 categorical_cols = [
     "gender", "Partner", "Dependents", "PhoneService",
     "MultipleLines", "InternetService", "OnlineSecurity",
@@ -43,16 +41,15 @@ training_columns = [
     'MonthlyCharges','TotalCharges'
 ]
 
-# -----------------------------
 # Safe transform function
-# -----------------------------
+
 def safe_transform(le, series):
     known_classes = set(le.classes_)
     return series.map(lambda x: le.transform([x])[0] if x in known_classes else -1)
 
-# -----------------------------
+
 # Streamlit UI
-# -----------------------------
+
 st.set_page_config(page_title="Customer Churn Prediction")
 st.title("📊 Customer Churn Prediction")
 st.write("Enter customer details below and click Predict.")
